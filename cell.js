@@ -1,3 +1,9 @@
+// Game of Life ruleset
+// if a dead cell is next to other 3 live cells it lives, as if for reproduction
+// if a live cell has less than 2 neighbors it dies, as if for loniliness
+// if a live cell has more than 3 neighbors it dies, as if for overpopulation
+// otherwise, the cell keeps its previous state
+
 class Cell {
   constructor(state, x, y, w) {
     this.state = state;
@@ -8,16 +14,16 @@ class Cell {
     this.w = w;
   }
   
+  // defines the new state based on the Game of Life ruleset
   updateState(neighbors){
-    this.previous = this.state
-    
-    if(this.state === 0 && neighbors == 3){
+    if(this.previous === 0 && neighbors == 3){
         this.state = 1
-      }else if(this.state == 1 && (neighbors < 2 || neighbors > 3)){
-        this.state = 0
-      } 
+    }else if(this.previous == 1 && (neighbors < 2 || neighbors > 3)){
+      this.state = 0
+    } 
   }
 
+  // paints the cell with a color
   show() {
     stroke(0);
     // If the cell is born, color it blue!
@@ -32,5 +38,8 @@ class Cell {
       fill(255);
     }
     square(this.x, this.y, this.w);
+
+    // update the previous state
+    this.previous = this.state
   }
 }

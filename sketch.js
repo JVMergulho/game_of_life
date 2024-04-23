@@ -43,14 +43,14 @@ function draw() {
   background(0)
   frameRate(slider.value());
   
-  // renderizar as células
+  // render cells
   for (let i = 0; i < cols; i++){
     for(let j = 0; j < rows; j++){
       grid[i][j].show()
     }
   }
   
-  // calcular os novos estados
+  // calculate new states
   if(start){
     for (let i = 0; i < cols; i++){
       for(let j = 0; j < rows; j++){
